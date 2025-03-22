@@ -1,7 +1,8 @@
 FROM n8nio/n8n:1.44.0
 
-# Installer cheerio, axios et htmlparser2 globalement
-RUN npm install -g cheerio axios htmlparser2
+USER node
 
-# Lancer n8n normalement
+# Installer cheerio, axios et htmlparser2 localement
+RUN npm install cheerio axios htmlparser2
+
 CMD ["n8n"]
