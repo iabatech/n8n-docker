@@ -1,15 +1,15 @@
 FROM n8nio/n8n:1.44.0
 
+# Utilisateur node pour installer les librairies
 USER node
 WORKDIR /home/node
 
-# Installer toutes les librairies nécessaires
-RUN npm install cheerio axios htmlparser2 @n8n/n8n-nodes-langchain \
-    form-data moment lodash csv-parse node-fetch@2 \
-    @n8n/n8n-nodes-stable-diffusion @n8n/n8n-nodes-openai @n8n/n8n-nodes-slack
+RUN npm install cheerio axios htmlparser2
 
+# Repasser root + remettre le dossier par défaut de n8n
 USER root
 WORKDIR /data
 
+# Lance n8n en précisant le chemin
 ENTRYPOINT ["tini", "--"]
 CMD ["n8n", "start"]
