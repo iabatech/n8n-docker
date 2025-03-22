@@ -1,9 +1,11 @@
 FROM n8nio/n8n:1.44.0
 
-# On installe les packages en tant que node
 USER node
+
+# Installer cheerio, axios et htmlparser2 localement
 RUN npm install cheerio axios htmlparser2
 
-# Repasser root pour démarrer n8n correctement
 USER root
-CMD ["n8n"]
+
+# Lancer n8n avec l'entrée officielle
+CMD ["n8n", "start"]
