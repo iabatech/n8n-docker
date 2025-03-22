@@ -6,8 +6,10 @@ WORKDIR /home/node
 
 RUN npm install cheerio axios htmlparser2
 
-# Remettre le dossier de travail par défaut de n8n
+# Repasser root + remettre le dossier par défaut de n8n
 USER root
-WORKDIR /
+WORKDIR /data
 
+# Lance n8n en précisant le chemin
+ENTRYPOINT ["tini", "--"]
 CMD ["n8n", "start"]
